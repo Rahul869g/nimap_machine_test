@@ -8,11 +8,9 @@ import {
 
 import AppLayout from "./AppLayout.jsx";
 import HomePage from "./pages/HomePage.jsx";
-import PopularMovies from "./pages/PopularMovies.jsx";
 import TopRatedMovies from "./pages/TopRatedMovies.jsx";
 import UpcomingMovies from "./pages/UpcomingMovies.jsx";
 import MovieDetails from "./pages/MovieDetails.jsx";
-import SearchResults from "./pages/SearchResults.jsx";
 
 const appRouter = createBrowserRouter([
   {

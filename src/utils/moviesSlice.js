@@ -7,7 +7,9 @@ const moviesSlice = createSlice({
       movies: [],
       loading: true,
       currentPage: 1,
-      totalPages: 0
+      totalPages: 0,
+      movieDetails: {},
+      castDetails: []
     },
     upcoming: {
       movies: [],
@@ -36,9 +38,24 @@ const moviesSlice = createSlice({
     setLoading: (state, action) => {
       const { category, loading } = action.payload;
       state[category].loading = loading;
+    },
+    setMovieDetails: (state, action) => {
+      const { movieDetails, castDetails } = action.payload;
+      state.popular.movieDetails = movieDetails;
+      state.popular.castDetails = castDetails;
+    },
+    clearMovieDetails: (state) => {
+      state.popular.movieDetails = {};
+      state.popular.castDetails = [];
     }
   }
 });
 
-export const { setMovies, setCurrentPage, setLoading } = moviesSlice.actions;
+export const {
+  setMovies,
+  setCurrentPage,
+  setLoading,
+  setMovieDetails,
+  clearMovieDetails
+} = moviesSlice.actions;
 export default moviesSlice.reducer;

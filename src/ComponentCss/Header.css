@@ -168,3 +168,14 @@
     margin-left: 10px;
   }
 }
+
+body {
+  padding-top: 80px;
+}
+
+/* Content Wrapper */
+.main-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
