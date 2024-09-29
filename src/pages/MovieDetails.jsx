@@ -8,7 +8,7 @@ import {
   IMG_CDN_URL
 } from "../constants";
 import "../ComponentCss/MovieDetails.css";
-import CastCard from "../Components/CastCard.jsx";
+import CastCard from "../components/CastCard.jsx";
 import Skeleton from "react-loading-skeleton";
 
 const MovieDetails = () => {
