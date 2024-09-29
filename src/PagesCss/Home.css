@@ -1,0 +1,92 @@
+/* Basic Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.popular-container {
+  /* background-color: #f0f0f0; */
+}
+
+/* Container for Movie Cards */
+.popular-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  justify-content: center;
+  width: 100%;
+}
+
+/* Title Styling */
+.tst {
+  font-size: 24px;
+  font-weight: bold;
+  color: #000000;
+  text-align: center;
+  margin: 20px 0;
+}
+
+/* Pagination */
+.pagination-container {
+  display: flex;
+  justify-content: flex-end; /* Align to the right */
+  margin: 20px 0 0 auto;
+}
+
+.pagination-button {
+  padding: 10px 15px;
+  margin: 0 5px;
+  border: none;
+  background-color: #605c5c;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.pagination-button:hover {
+  background-color: #444;
+}
+
+.pagination-button.active {
+  background-color: #f39c12;
+  color: white;
+}
+
+.pagination-button[disabled] {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Responsive Styling */
+@media (max-width: 1024px) {
+  .popular-container {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .popular-container {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 10px;
+  }
+
+  .tst {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .popular-container {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 5px;
+  }
+
+  .tst {
+    font-size: 18px;
+  }
+}

@@ -3,12 +3,12 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Arial", sans-serif; /* Ensure consistent font */
+  font-family: "Arial", sans-serif;
 }
 
 /* Dark Mode Header */
 .header {
-  background-color: #1e1e1e; /* Slightly darker background */
+  background-color: #1e1e1e;
   color: #ffffff;
   position: fixed;
   top: 0;
@@ -43,6 +43,9 @@
 .nav {
   display: flex;
   gap: 20px;
+  max-width: max-content;
+  margin: 0 auto;
+  padding: 1rem;
 }
 
 .nav-link {
@@ -55,7 +58,7 @@
 }
 
 .nav-link:hover {
-  color: #ff9800; /* Add hover effect */
+  color: #ff9800;
 }
 
 .nav-link:not(:last-child)::after {
@@ -191,7 +194,6 @@
   color: #e68900;
 }
 
-/* Ensure content is not hidden under the fixed header */
 body {
   padding-top: 80px;
 }

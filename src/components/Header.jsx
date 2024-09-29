@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Logo from "../assets/logo.webp";
 import "../ComponentCss/Header.css";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState(""); // State for search query
-  const navigate = useNavigate(); // For navigation
+  const [searchQuery, setSearchQuery] = useState("");
+  const navigate = useNavigate();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -14,7 +14,7 @@ const Header = () => {
 
   const handleSearch = () => {
     if (searchQuery.trim()) {
-      navigate(`/search?query=${searchQuery}`); // Navigate to the search route with the query
+      navigate(`/search?query=${searchQuery}`);
     }
   };
   return (

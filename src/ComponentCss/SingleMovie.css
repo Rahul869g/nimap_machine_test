@@ -1,0 +1,188 @@
+/* Overall container styling */
+.outer-container {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    background-color: rgba(33, 31, 31, 0.933);
+}
+
+/* Main container styling */
+.main-container {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping for better responsiveness */
+    width: 100%;
+    max-width: 1200px;
+    background-color: rgb(21, 2, 46);
+    border-radius: 10px;
+    padding: 15px;
+    gap: 15px; /* Add space between left and right sections */
+}
+
+/* Left section (movie details) */
+.left {
+    flex: 1 1 400px; /* Flex-basis to give it room to adjust based on screen size */
+    padding: 10px;
+    color: antiquewhite;
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    gap: 10px;
+}
+
+.top-section {
+    display: flex;
+    gap: 10px; /* Add spacing between image and details */
+}
+
+.left-image {
+    width: 150px;
+    height: auto;
+    border-radius: 8px;
+}
+
+/* Details for movie information */
+.details {
+    flex: 1;
+}
+
+.title {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.rating, .release-date {
+    margin-top: 5px;
+}
+
+.inner-details {
+    display: flex;
+    gap: 20px; /* Space between duration and genre */
+    margin-top: 10px;
+}
+
+.overview {
+    margin-top: 15px;
+}
+
+.overview h3 {
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.overview-text {
+    line-height: 1.5;
+}
+
+/* Right section (movie backdrop) */
+.right {
+    flex: 1 1 400px; /* Flex-basis for responsive sizing */
+    position: relative;
+}
+
+.right-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Cover the container without stretching */
+    border-radius: 8px;
+    max-height: 250px;
+}
+
+/* Cast container styling */
+.CastContainer {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping for cast members */
+    gap: 15px;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: rgba(33, 31, 31, 0.933);
+    justify-content: center;
+}
+
+.CastCard {
+    width: 150px;
+    height: 200px;
+    background-color: #333;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s;
+    overflow: hidden;
+    text-align: center;
+}
+
+.CastCard img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-bottom: 2px solid #222;
+}
+
+.CastCard:hover {
+    transform: scale(1.05);
+}
+
+.cast-info {
+    padding: 10px 0;
+}
+
+.cast-name {
+    font-size: 14px;
+    font-weight: bold;
+    color: antiquewhite;
+}
+
+.cast-character {
+    font-size: 12px;
+    color: #bbb;
+}
+
+/* Scrollbar styling */
+.CastContainer::-webkit-scrollbar {
+    height: 8px;
+}
+
+.CastContainer::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 8px;
+}
+
+.CastContainer::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+}
+
+/* Responsive styling */
+@media (max-width: 768px) {
+    .main-container {
+        flex-direction: column;
+    }
+
+    .left, .right {
+        width: 100%;
+    }
+
+    .right-image {
+        max-height: 200px; /* Smaller backdrop height for smaller screens */
+    }
+
+    .left-image {
+        width: 120px; /* Smaller poster image on mobile */
+    }
+
+    .CastCard {
+        width: 120px; /* Smaller cast card for mobile */
+        height: 180px;
+    }
+}
+
+@media (max-width: 480px) {
+    .title {
+        font-size: 20px;
+    }
+
+    .overview h3 {
+        font-size: 18px;
+    }
+
+    .CastCard {
+        width: 100px; /* Smaller cast card on very small screens */
+        height: 160px;
+    }
+}
