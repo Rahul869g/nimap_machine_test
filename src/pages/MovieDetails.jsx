@@ -9,6 +9,7 @@ import {
 } from "../constants";
 import "../ComponentCss/MovieDetails.css";
 import CastCard from "../Components/CastCard.jsx";
+import Skeleton from "react-loading-skeleton";
 
 const MovieDetails = () => {
   const { id } = useParams();
@@ -45,7 +46,34 @@ const MovieDetails = () => {
   }, [id, dispatch]);
 
   if (!movieDetails.title) {
-    return <div>Loading...</div>;
+    return (
+      <div className="outer-container">
+        <div className="main-container">
+          <div className="left">
+            <Skeleton height={225} width={150} />
+            <div className="details">
+              <Skeleton height={30} width={200} />
+              <Skeleton height={20} width={100} />
+              <div className="inner-details">
+                <Skeleton height={20} width={80} />
+                {/* Skeleton for duration */}
+                <Skeleton height={20} width={150} />
+              </div>
+              <Skeleton height={20} width={200} />
+            </div>
+            <div className="overview">
+              <h3>
+                <Skeleton width={100} />
+              </h3>
+              <Skeleton count={3} />
+            </div>
+          </div>
+          <div className="right">
+            <Skeleton height={225} width={400} />
+          </div>
+        </div>
+      </div>
+    );
   }
 
   return (
