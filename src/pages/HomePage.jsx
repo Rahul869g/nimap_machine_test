@@ -10,12 +10,15 @@ import {
   IMG_CDN_URL,
   POPULAR_MOVIES_API_URL
 } from "../constants";
+import { useDispatch, useSelector } from "react-redux";
+import { setMovies, setCurrentPage, setLoading } from "../utils/moviesSlice"; // Adjust the path
 
 const Home = () => {
-  const [movies, setMovies] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(0);
+  const { movies, loading, currentPage, totalPages } = useSelector(
+    (state) => state.movies
+  );
+  const dispatch = useDispatch();
+
   const location = useLocation();
   const navigate = useNavigate();
   const maxPagesToShow = 5;
@@ -27,7 +30,7 @@ const Home = () => {
   };
 
   const fetchMovies = async (page) => {
-    setLoading(true);
+    dispatch(setLoading(true));
     const searchQuery = getSearchQuery();
     const url = searchQuery
       ? SEARCH_MOVIES_API_URL(searchQuery, page)
@@ -36,8 +39,13 @@ const Home = () => {
     try {
       const response = await fetch(url);
       const data = await response.json();
-      setMovies(data.results);
-      setTotalPages(Math.min(data.total_pages, 500));
+      dispatch(
+        setMovies({
+          movies: data.results,
+          loading: false,
+          totalPages: Math.min(data.total_pages, 500)
+        })
+      );
     } catch (error) {
       console.error("Error fetching the movies:", error);
     } finally {
@@ -55,7 +63,7 @@ const Home = () => {
 
   const handlePageChange = (page) => {
     if (page > 0 && page <= totalPages) {
-      setCurrentPage(page);
+      dispatch(setCurrentPage(page));
     }
   };
 
