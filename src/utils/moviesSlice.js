@@ -3,22 +3,39 @@ import { createSlice } from "@reduxjs/toolkit";
 const moviesSlice = createSlice({
   name: "movies",
   initialState: {
-    movies: [],
-    loading: true,
-    currentPage: 1,
-    totalPages: 0
+    popular: {
+      movies: [],
+      loading: true,
+      currentPage: 1,
+      totalPages: 0
+    },
+    upcoming: {
+      movies: [],
+      loading: true,
+      currentPage: 1,
+      totalPages: 0
+    },
+    topRated: {
+      movies: [],
+      loading: true,
+      currentPage: 1,
+      totalPages: 0
+    }
   },
   reducers: {
     setMovies: (state, action) => {
-      state.movies = action.payload.movies;
-      state.loading = action.payload.loading;
-      state.totalPages = action.payload.totalPages;
+      const { category, movies, totalPages } = action.payload;
+      state[category].movies = movies;
+      state[category].totalPages = totalPages;
+      state[category].loading = false;
     },
     setCurrentPage: (state, action) => {
-      state.currentPage = action.payload;
+      const { category, page } = action.payload;
+      state[category].currentPage = page;
     },
     setLoading: (state, action) => {
-      state.loading = action.payload;
+      const { category, loading } = action.payload;
+      state[category].loading = loading;
     }
   }
 });

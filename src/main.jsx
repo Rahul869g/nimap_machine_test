@@ -1,6 +1,10 @@
 import { createRoot } from "react-dom/client";
 import "./index.css";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import {
+  Navigate,
+  RouterProvider,
+  createBrowserRouter
+} from "react-router-dom";
 
 import AppLayout from "./AppLayout.jsx";
 import HomePage from "./pages/HomePage.jsx";
@@ -18,11 +22,11 @@ const appRouter = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <HomePage />
+        element: <Navigate to="/popular" replace={true} />
       },
       {
         path: "/popular",
-        element: <PopularMovies />
+        element: <HomePage />
       },
       {
         path: "/top-rated",
@@ -38,7 +42,7 @@ const appRouter = createBrowserRouter([
       },
       {
         path: "search",
-        element: <SearchResults />
+        element: <HomePage />
       }
     ]
   }

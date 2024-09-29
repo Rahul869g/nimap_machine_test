@@ -23,6 +23,7 @@ const Header = () => {
         <Link to="/">
           <img src={Logo} alt="MovieDB Logo" className="logo" />
         </Link>
+
         <nav className={`nav ${isMenuOpen ? "open" : ""}`}>
           <Link to="/popular" className="nav-link" onClick={toggleMenu}>
             Popular
@@ -41,6 +42,11 @@ const Header = () => {
             className="search-input"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                handleSearch();
+              }
+            }}
           />
           <button className="search-button" onClick={handleSearch}>
             Search

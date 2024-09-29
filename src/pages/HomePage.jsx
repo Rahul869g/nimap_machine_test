@@ -3,6 +3,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import "../PagesCss/Home.css";
+import SkeletonLoader from "../components/SkeletonLoader";
+import Pagination from "../components/Pagination";
 import MovieCard from "../components/MovieCard.jsx";
 
 import {
@@ -14,14 +16,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { setMovies, setCurrentPage, setLoading } from "../utils/moviesSlice"; // Adjust the path
 
 const Home = () => {
-  const { movies, loading, currentPage, totalPages } = useSelector(
-    (state) => state.movies
+  const { movies, loading, currentPage } = useSelector(
+    (state) => state.movies.popular
   );
   const dispatch = useDispatch();
 
   const location = useLocation();
   const navigate = useNavigate();
-  const maxPagesToShow = 5;
 
   // Function to extract query parameters from the URL
   const getSearchQuery = () => {
@@ -30,7 +31,7 @@ const Home = () => {
   };
 
   const fetchMovies = async (page) => {
-    dispatch(setLoading(true));
+    dispatch(setLoading({ category: "popular", loading: true }));
     const searchQuery = getSearchQuery();
     const url = searchQuery
       ? SEARCH_MOVIES_API_URL(searchQuery, page)
@@ -41,6 +42,7 @@ const Home = () => {
       const data = await response.json();
       dispatch(
         setMovies({
+          category: "popular",
           movies: data.results,
           loading: false,
           totalPages: Math.min(data.total_pages, 500)
@@ -61,93 +63,10 @@ const Home = () => {
     navigate(`/movie/${id}`);
   };
 
-  const handlePageChange = (page) => {
-    if (page > 0 && page <= totalPages) {
-      dispatch(setCurrentPage(page));
-    }
-  };
-
-  const renderPagination = () => {
-    let startPage = Math.max(currentPage - Math.floor(maxPagesToShow / 2), 1);
-    let endPage = Math.min(startPage + maxPagesToShow - 1, totalPages);
-
-    if (endPage - startPage + 1 < maxPagesToShow) {
-      startPage = Math.max(endPage - maxPagesToShow + 1, 1);
-    }
-
-    const pages = [];
-
-    if (currentPage > 1) {
-      pages.push(
-        <button
-          key="first"
-          className="pagination-button"
-          onClick={() => handlePageChange(1)}
-        >
-          First
-        </button>
-      );
-      pages.push(
-        <button
-          key="prev"
-          className="pagination-button"
-          onClick={() => handlePageChange(currentPage - 1)}
-        >
-          Previous
-        </button>
-      );
-    }
-
-    for (let i = startPage; i <= endPage; i++) {
-      pages.push(
-        <button
-          key={i}
-          className={`pagination-button ${i === currentPage ? "active" : ""}`}
-          onClick={() => handlePageChange(i)}
-        >
-          {i}
-        </button>
-      );
-    }
-
-    if (currentPage < totalPages) {
-      pages.push(
-        <button
-          key="next"
-          className="pagination-button"
-          onClick={() => handlePageChange(currentPage + 1)}
-        >
-          Next
-        </button>
-      );
-      pages.push(
-        <button
-          key="last"
-          className="pagination-button"
-          onClick={() => handlePageChange(totalPages)}
-        >
-          Last
-        </button>
-      );
-    }
-
-    return pages;
-  };
-
-  const renderSkeletons = () => {
-    return Array.from({ length: 30 }, (_, index) => (
-      <div key={index} className="movie-card">
-        <Skeleton height={200} width={200} />
-        <Skeleton height={20} width={150} style={{ marginTop: 10 }} />
-        <Skeleton height={15} width={100} style={{ marginTop: 10 }} />
-      </div>
-    ));
-  };
-
   return (
     <div className="popular-container">
       {loading ? (
-        renderSkeletons()
+        <SkeletonLoader />
       ) : movies.length > 0 ? (
         movies.map((movie) => (
           <MovieCard
@@ -161,7 +80,7 @@ const Home = () => {
       ) : (
         <p>No movies found.</p>
       )}
-      <div className="pagination-container">{renderPagination()}</div>
+      <Pagination />
     </div>
   );
 };
