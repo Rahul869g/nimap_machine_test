@@ -30,9 +30,10 @@
 
 /* Pagination */
 .pagination-container {
+  padding: 0rem 1rem;
   display: flex;
-  justify-content: flex-end; /* Align to the right */
-  margin: 20px 0 0 auto;
+  justify-content: flex-end;
+  margin: 0 0 2rem auto;
 }
 
 .pagination-button {
@@ -70,6 +71,13 @@
 }
 
 @media (max-width: 768px) {
+  .pagination-container {
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    width: 100%;
+    margin: 20px 0;
+  }
   .popular-container {
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
     gap: 10px;
@@ -81,6 +89,18 @@
 }
 
 @media (max-width: 480px) {
+  .pagination-container {
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    width: 100%;
+    margin: 20px 0;
+  }
+
+  .pagination-button {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
   .popular-container {
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     gap: 5px;

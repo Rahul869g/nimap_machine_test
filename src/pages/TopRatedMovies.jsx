@@ -64,24 +64,27 @@ const TopRatedMovies = () => {
   };
 
   return (
-    <div className="popular-container">
-      {loading ? (
-        <SkeletonLoader />
-      ) : movies.length > 0 ? (
-        movies.map((movie) => (
-          <MovieCard
-            key={movie.id}
-            image={`${IMG_CDN_URL}${movie.poster_path}`}
-            title={movie.title}
-            rating={movie.vote_average}
-            onClick={() => handleMovieClick(movie.id)}
-          />
-        ))
-      ) : (
-        <p>No movies found.</p>
-      )}
+    <>
+      <div className="popular-container">
+        {loading ? (
+          <SkeletonLoader />
+        ) : movies.length > 0 ? (
+          movies.map((movie) => (
+            <MovieCard
+              key={movie.id}
+              image={`${IMG_CDN_URL}${movie.poster_path}`}
+              title={movie.title}
+              rating={movie.vote_average}
+              onClick={() => handleMovieClick(movie.id)}
+            />
+          ))
+        ) : (
+          <p>No movies found.</p>
+        )}
+      </div>
+      <br></br>
       <Pagination />
-    </div>
+    </>
   );
 };
 

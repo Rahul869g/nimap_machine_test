@@ -127,10 +127,13 @@
 }
 
 @media (max-width: 768px) {
+  .header {
+    padding: 15px 30px;
+  }
   .header-content {
     flex-direction: row;
-    justify-content: space-between; /* Ensure search and hamburger are spaced */
-    gap: auto;
+    justify-content: space-between;
+    gap: 20px;
   }
 
   .nav {
