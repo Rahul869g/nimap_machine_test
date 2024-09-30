@@ -83,7 +83,7 @@ const UpcomingMovies = () => {
         )}
       </div>
       <br></br>
-      <Pagination />
+      <Pagination category="upcoming" />
     </>
   );
 };

@@ -83,7 +83,7 @@ const Home = () => {
         )}
       </div>
       <br></br>
-      <Pagination />
+      <Pagination category="popular" />
     </>
   );
 };

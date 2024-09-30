@@ -83,7 +83,7 @@ const TopRatedMovies = () => {
         )}
       </div>
       <br></br>
-      <Pagination />
+      <Pagination category="topRated" />
     </>
   );
 };

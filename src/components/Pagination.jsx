@@ -2,15 +2,15 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentPage } from "../utils/moviesSlice"; // Adjust the path
 
-const Pagination = ({ maxPagesToShow = 3 }) => {
+const Pagination = ({ category, maxPagesToShow = 3 }) => {
   const { currentPage, totalPages } = useSelector(
-    (state) => state.movies.popular
+    (state) => state.movies[category]
   );
   const dispatch = useDispatch();
 
   const handlePageChange = (page) => {
     if (page > 0 && page <= totalPages) {
-      dispatch(setCurrentPage({ category: "popular", page }));
+      dispatch(setCurrentPage({ category, page }));
     }
   };
 
